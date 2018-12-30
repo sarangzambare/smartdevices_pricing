@@ -1,4 +1,8 @@
-Author: Sarang Zambare
+
+# Data Collection and Analysis for smart-phones/tablets and smartwatches.
+
+
+## Author: Sarang Zambare
 
 This repository is for data collection and analysis of smart-devices(smartphones, tablets, watches).
 
@@ -22,7 +26,7 @@ The data are scraped from https://www.gsmarena.com. As of the current time, it i
 
 Currently, I am aiming at about 2000 devices (inclusive of smartphones, tablets and watches), from about 40 manufacturers.
 
-This is a living repository and I plan to :
+### This is a living repository and I plan to :
 
 - Generate a well documented dataset summarising the above mentioned features for over 2000 devices.
 - Employ various supervised regression techniques like linear, natural splines, including tree-based methods like random-forests.
