@@ -46,18 +46,31 @@ for brand_link in brand_links:
         # scraping all product specifications
         specs_list_container = soup.find('div',{'id':'specs-list'})
         product_lte = 1 if 'LTE' in str(specs_list_container.find('a',{'class':'link-network-detail collapse'}).text) else 0
+
         product_year = str(specs_list_container.find('td',{'data-spec':'year'}).text.encode('ascii','ignore')) if specs_list_container.find('td',{'data-spec':'year'}) else None
+
         product_weight = str(specs_list_container.find('td',{'data-spec':'weight'}).text.encode('ascii','ignore')) if specs_list_container.find('td',{'data-spec':'weight'}) else None
+
         product_disp_type = str(specs_list_container.find('td',{'data-spec':'displaytype'}).text.encode('ascii','ignore')) if specs_list_container.find('td',{'data-spec':'displaytype'}) else None
+
         product_disp_size = str(specs_list_container.find('td',{'data-spec':'displaysize'}).text.encode('ascii','ignore')) if specs_list_container.find('td',{'data-spec':'displaysize'}) else None
+
         product_ppi = str(specs_list_container.find('td',{'data-spec':'displayresolution'}).text.encode('ascii','ignore')) if specs_list_container.find('td',{'data-spec':'displayresolution'}) else None
+
         product_ghz = str(specs_list_container.find('td',{'data-spec':'cpu'}).text.encode('ascii','ignore')) if specs_list_container.find('td',{'data-spec':'cpu'}) else None
+
         product_ram = str(specs_list_container.find('td',{'data-spec':'internalmemory'}).text.encode('ascii','ignore')) if specs_list_container.find('td',{'data-spec':'internalmemory'}) else None
+
         product_internal = str(specs_list_container.find('td',{'data-spec':'internalmemory'}).text.encode('ascii','ignore')) if specs_list_container.find('td',{'data-spec':'internalmemory'}) else None
+
         product_cam = str(soup.find('td',{'data-spec':'cam1modules'}).text.encode('ascii','ignore')) if soup.find('td',{'data-spec':'cam1modules'}) else None
+
         product_frontcam = str(soup.find('td',{'data-spec':'cam2modules'}).text.encode('ascii','ignore')) if soup.find('td',{'data-spec':'cam2modules'}) else None
+
         product_bluetooth = str(soup.find('td',{'data-spec':'bluetooth'}).text.encode('ascii','ignore')) if soup.find('td',{'data-spec':'bluetooth'}) else None
+
         product_battery = str(soup.find('td',{'data-spec':'batdescription1'}).text.encode('ascii','ignore')) if soup.find('td',{'data-spec':'batdescription1'}) else None
+
         product_price = str(soup.find('td',{'data-spec':'price'}).text.encode('ascii','ignore')) if soup.find('td',{'data-spec':'price'}) else None
 
         # appending product to products_df dataframe
@@ -65,7 +78,7 @@ for brand_link in brand_links:
 
 
 
-products_df
+products_df.to_csv('csv/smartdevices_data_full.csv')
 
 
 # re for ppi = re.findall(r'\d{1,3} ppi',str(specs_list_container.find('td',{'data-spec':'displayresolution'}).text))[0][:4]
