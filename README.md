@@ -4,6 +4,8 @@
 
 ## Author: Sarang Zambare
 
+### Note: You can do whatever you want with the csv files generated in this project, no licencing involved.
+
 This repository is for data collection and analysis of smart-devices(smartphones, tablets, watches).
 
 The data are scraped from https://www.gsmarena.com. As of the current time, it involves 15 features namely:
