@@ -19,7 +19,7 @@ products_df = products_df.drop("Unnamed: 0",axis=1)
 products_df = products_df.dropna(axis=0)
 
 # exporting to csv
-products_df.to_csv('csv/data_nomissing.csv')
+#products_df.to_csv('csv/data_nomissing.csv')
 
 
 # cleaning column year
