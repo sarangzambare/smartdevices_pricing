@@ -11,20 +11,22 @@ This repository is for data collection and analysis of smart-devices(smartphones
 The data are scraped from https://www.gsmarena.com. As of the current time, it involves 15 features namely:
 
 1. Product Name
-2. LTE or not
+2. LTE or not (binary)
 3. Year announced
-4. Weight
-5. Display type
+4. Weight (in grams)
+5. Display type (three types: LCD, OLED, OTHER)
 6. Display size
 7. PPI (Pixels Per Inch)
 8. CPU (in GHz)
-9. Internal memory
-10. RAM
+9. Internal memory (in GB)
+10. RAM (in GB)
 11. Rear Camera (in MP)
 12. Front Camera (in MP)
 13. Bluetooth Version
 14. Battery (in mAh)
-15. Price
+15. Price (in USD)*
+
+* Some prices listed on the website were in foreign currencies, the appropriate current exchange rate has been applied to convert the prices to USD (as of 12/30/2018)
 
 Currently, I am aiming at about 2000 devices (inclusive of smartphones, tablets and watches), from about 40 manufacturers.
 
@@ -34,3 +36,7 @@ Currently, I am aiming at about 2000 devices (inclusive of smartphones, tablets 
 - Employ various supervised regression techniques like linear, natural splines, including tree-based methods like random-forests.
 - Use this as an educational dataset to experiment with validation techniques like cross-validation and bootstrap.
 - Explore patterns in the data by employing unsupervised techniques like PCA and Clustering.
+
+So far, I have achieved to scrap,clean and compile into csv, data for more than 1000 phones/tablets/watches. Attaching a screenshot of the clean csv :
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/csv_shot.png)
