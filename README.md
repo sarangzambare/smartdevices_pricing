@@ -40,3 +40,10 @@ Currently, I am aiming at about 2000 devices (inclusive of smartphones, tablets 
 So far, I have achieved to scrap,clean and compile into csv, data for more than 1000 phones/tablets/watches. Attaching a screenshot of the clean csv :
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/csv_shot.png)
+
+
+Below are the plots of price vs each column. Visually we can determine columns which take up most and least amount of variance in the data.
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plo1.png)
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plot2.png)
