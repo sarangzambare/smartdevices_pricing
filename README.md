@@ -61,6 +61,24 @@ Adjusted R-squared values indicate that the linear model explains about **29% of
 
 ### Fitting smoothing splines over three features: cpu, screen_size and ppi.
 
+```
+require(gam)
+
+gam1 = gam(price~s(cpu_ghz,df=4)+s(ppi,df=4)+s(screen_size,df=4),data=data)
+summary(gam1)
+Call: gam(formula = price ~ s(cpu_ghz, df = 4) + s(ppi, df = 4) + s(screen_size,
+    df = 4), data = data)
+Deviance Residuals:
+    Min      1Q  Median      3Q     Max
+-337.16  -75.08  -23.70   49.56 1264.79
+
+(Dispersion Parameter for gaussian family taken to be 18835.41)
+
+    Null Deviance: 47336465 on 1246 degrees of freedom
+Residual Deviance: 23242893 on 1234 degrees of freedom
+AIC: 15828.6
+```
+
 Using only three, and highly noisy features results in a pathetic fit with high error bars, especially towards the endpoints. The resulting fit had an atrociously high **AIC index of 15828.6** (refer R_dump_1.dat). But we can visualise the trend of the dependence of each of the three variables, through the plots below:
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/splines.png)
@@ -70,7 +88,41 @@ Using only three, and highly noisy features results in a pathetic fit with high 
 
 Here I train a random forest over all 13 features of the data. Using 4 features at each split of the tree, we get a **70.65% explanation of the total varaiance, which is not bad!** (refer R_dump_randomForest.dat for detailed console output)
 
+```
+> data=read.csv('data_clean.csv')
+> attach(data)
+> require(randomForest)
+> train = sample(1:nrow(data),900)
+> rf.data = randomForest(price~.-name-price_category,data=data,subset=train)
+> oob.err=double(13)
+> test.err=double(13)
+
+> rf.data
+
+Call:
+ randomForest(formula = price ~ . - name - price_category, data = data)
+               Type of random forest: regression
+                     Number of trees: 500
+No. of variables tried at each split: 4
+
+          Mean of squared residuals: 11141.51
+                    % Var explained: 70.65
+```                    
+
 In a different approach, the data set is divided into a training set (900 entries) and a test set (300 entries). To have a better judgement of how many features to consider at each split, the *Out of bag error* and *Test error* are plotted for different value of features:
+
+```
+> for(mtry in 1:13){
++     fit=randomForest(price~.-name-price_category,data=data,subset=train,mtry=mtry,ntree=500)
++     oob.err[mtry] = fit$mse[500]
++     pred=predict(fit,data[-train,])
++     test.err[mtry]=with(data[-train,],mean((price-pred)^2))
++     cat(mtry," ")
++ }
+1  2  3  4  5  6  7  8  9  10  11  12  13  
+> matplot(1:mtry,cbind(test.err,oob.err),pch=19,col=c('red','blue'),type='b',ylab='Mean Squared Error',xlab='# of features at each split')
+> legend("topright",legend=c("Out of bag","Test"),pch=19,col=c("red","blue"))
+```
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/rforest.png)
 
