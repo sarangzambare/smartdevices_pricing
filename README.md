@@ -76,3 +76,37 @@ In a different approach, the data set is divided into a training set (900 entrie
 
 
 Looks like in this case the OOB error does not do a decent job in predicting the test error. Also, there is not a lot of change in the test error for anything between 4 and 8 features at each split. Hence I keep it at 4 (simpler the better).
+
+
+### Classification: Linear Discriminant Analysis over all features.
+
+For the purpose of classification. I divided the devices into three classes:
+
+1. **Cheap devices: costing $200 or less**
+2. **Not-so-cheap devices: costing between $200 - $500**
+3. **Expensive devices: costing $500 and above**
+
+
+The aim here is to use LDA to classify devices into their respective categories. After employing LDA for the three classes (labelled as 1,2,3), the classification along each of the Linear Discriminants can be plotted as a graph : (three classes so 2 discriminants):
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/lda_1.png)
+
+We can also see the confusion matrix, which gives us a better understanding of how well the model performed:
+
+```
+  1   2   3
+1 103  40   1
+2  34 121  12
+3   0  16  20
+
+```
+
+The confusion matrix is tending towards being diagonal, which means the model preformed pretty well. We can also see the mean rate of correct classification, which can be a measure of the test accuracy.
+
+```
+> mean(lda.pred$class==data[-train,]$price_category)
+[1] 0.70317
+
+```
+
+**70.31% times, the model correctly classified the devices, which is pretty good for such a dumb model!**
