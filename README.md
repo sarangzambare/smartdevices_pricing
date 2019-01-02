@@ -55,13 +55,13 @@ Trial: Regressing price over cpu_ghz. Single variable regression.
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plot_3.png)
 
-Adjusted R-squared values indicate that the linear model explains about 29% of the total variance, whereas the quadratic model explains 43% of the total variance, as below:
+Adjusted R-squared values indicate that the linear model explains about **29% of the total variance**, whereas the quadratic model explains **43% of the total variance**, as below:
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/r_squared.jpg)
 
 ### Fitting smoothing splines over three features: cpu, screen_size and ppi.
 
-Using only three, and highly noisy features results in a pathetic fit with high error bars, especially towards the endpoints. The resulting fit had an atrociously high AIC index of 15828.6 (refer R_dump_1.dat). But we can visualise the trend of the dependence of each of the three variables, through the plots below:
+Using only three, and highly noisy features results in a pathetic fit with high error bars, especially towards the endpoints. The resulting fit had an atrociously high **AIC index of 15828.6** (refer R_dump_1.dat). But we can visualise the trend of the dependence of each of the three variables, through the plots below:
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/splines.png)
 
