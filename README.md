@@ -42,6 +42,7 @@ So far, I have achieved to scrap,clean and compile into csv, data for more than 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/csv_shot.png)
 
 
+## Note: For all the plots below, the R code and the console output of RStudio can be found in the R_dump_xx.dat files.
 Below are the plots of price vs each column. Visually we can determine columns which take up most and least amount of variance in the data.
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plot1.png)
@@ -57,3 +58,9 @@ Trial: Regressing price over cpu_ghz. Single variable regression.
 Adjusted R-squared values indicate that the linear model explains about 29% of the total variance, whereas the quadratic model explains 43% of the total variance, as below:
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/r_squared.jpg)
+
+### Fitting smoothing splines over three features: cpu, screen_size and ppi.
+
+Using only three, and highly noisy features results in a pathetic fit with high error bars, especially towards the endpoints. The resulting fit had an atrociously high AIC index of 15828.6 (refer R_dump_1.dat). But we can visualise the trend of the dependence of each of the three variables, through the plots below:
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/splines.png)
