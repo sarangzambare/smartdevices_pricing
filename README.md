@@ -53,3 +53,7 @@ Trial: Regressing price over cpu_ghz. Single variable regression.
 ### Linear and Quadratic regression over cpu_ghz:
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plot_3.png)
+
+Adjusted R-squared values indicate that the linear model explains about 29% of the total variance, whereas the quadratic model explains 43% of the total variance, as below:
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/r_squared.jpg)
