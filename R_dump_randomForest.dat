@@ -1,0 +1,27 @@
+> data=read.csv('data_clean.csv')
+> attach(data)
+> require(randomForest)
+> train = sample(1:nrow(data),900)
+> rf.data = randomForest(price~.-name-price_category,data=data,subset=train)
+> oob.err=double(13)
+> test.err=double(13)
+
+> rf.data
+
+Call:
+ randomForest(formula = price ~ . - name - price_category, data = data)
+               Type of random forest: regression
+                     Number of trees: 500
+No. of variables tried at each split: 4
+
+          Mean of squared residuals: 11141.51
+                    % Var explained: 70.65
+
+> for(mtry in 1:13){
++     fit=randomForest(price~.-name-price_category,data=data,subset=train,mtry=mtry,ntree=500)
++     oob.err[mtry] = fit$mse[500]
++     pred=predict(fit,data[-train,])
++     test.err[mtry]=with(data[-train,],mean((price-pred)^2))
+}
+> matplot(1:mtry,cbind(test.err,oob.err),pch=19,col=c('red','blue'),type='b',ylab='Mean Squared Error',xlab='# of features at each split')
+> legend("topright",legend=c("Out of bag","Test"),pch=19,col=c("red","blue"))
