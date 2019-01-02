@@ -47,3 +47,9 @@ Below are the plots of price vs each column. Visually we can determine columns w
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plot1.png)
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plot_2.png)
+
+Trial: Regressing price over cpu_ghz. Single variable regression.
+
+### Linear and Quadratic regression over cpu_ghz:
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plot_3.png)
