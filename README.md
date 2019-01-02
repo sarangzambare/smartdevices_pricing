@@ -138,7 +138,49 @@ For the purpose of classification. I divided the devices into three classes:
 2. **Not-so-cheap devices: costing between $200 - $500**
 3. **Expensive devices: costing $500 and above**
 
+```
+> require(MASS)
+Loading required package: MASS
+> fitlda = lda(price_category~.-name-price,data=data,subset=train)
+> fitlda
+Call:
+lda(price_category ~ . - name - price, data = data, subset = train)
 
+Prior probabilities of groups:
+         1          2          3
+0.42444444 0.47777778 0.09777778
+
+Group means:
+        LTE     year   weight display_typeOLED display_typeOTHER screen_size      ppi  cpu_ghz      ram  internal    camera front_cam
+1 0.6596859 2015.508 155.2094       0.02879581        0.26963351    4.933168 264.8141 1.291107 1.674450  17.73530  8.486518  3.968325
+2 0.7790698 2015.258 192.6349       0.15348837        0.18372093    5.555233 335.1279 1.617312 2.999730  46.57702 11.764767  7.553721
+3 0.9318182 2016.602 205.0909       0.59090909        0.09090909    5.991136 411.5341 2.227284 5.135455 160.85255 14.868182 10.812500
+    blth_v  battery
+1 3.625654 2574.725
+2 3.819302 3260.174
+3 4.400000 3568.307
+
+Coefficients of linear discriminants:
+                            LD1           LD2
+LTE                0.3051819153 -0.5573399936
+year              -0.3332056905  0.4466952185
+weight             0.0072860994  0.0037372107
+display_typeOLED   0.8933229494  1.4194517138
+display_typeOTHER  0.2626532661  0.1605923964
+screen_size       -0.2039114518 -0.5398919819
+ppi                0.0032347057 -0.0039307720
+cpu_ghz            0.9791124094  0.2700175880
+ram                0.1553809657 -0.0438809386
+internal           0.0043088153  0.0106483916
+camera             0.0358542407 -0.0183217878
+front_cam          0.0415875543 -0.0887501794
+blth_v             0.1240752051 -0.0717548012
+battery           -0.0000060288 -0.0003019114
+
+Proportion of trace:
+   LD1    LD2
+0.8325 0.1675
+```
 The aim here is to use LDA to classify devices into their respective categories. After employing LDA for the three classes (labelled as 1,2,3), the classification along each of the Linear Discriminants can be plotted as a graph : (three classes so 2 discriminants):
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/lda_1.png)
