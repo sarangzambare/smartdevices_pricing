@@ -46,4 +46,4 @@ Below are the plots of price vs each column. Visually we can determine columns w
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plot1.png)
 
-![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plot2.png)
+![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plot_2.png)
