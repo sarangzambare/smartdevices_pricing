@@ -100,7 +100,7 @@ battery      0.16416756 -0.55797963  0.007439038
 price        0.29120086 -0.10567993 -0.232132429
 Below are the plots of price vs each column. Visually we can determine columns which take up most and least amount of variance in the data.
 ```
-![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/pca_screeplot.png)
+![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/screeplot.png)
 
 Hence, only the first two components carry most of the variance. In the R output above, the loadings of each feature for each components can be seen, but its not very intuitive. Thanks to R, we can plot the loadings of all the features in a single plot.
 
