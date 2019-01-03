@@ -44,14 +44,86 @@ So far, I have achieved to scrap,clean and compile into csv, data for more than 
 
 # Analysis
 ============================================================
-## Note: For all the plots below, the R code and the console output of RStudio can be found in the R_dump_xx.dat files.
+### Note: For all the plots below, the R code and the console output of RStudio can be found in the R_dump_xx.dat files.
+
+## Principal Components Analysis over numeric features:
+Here I try to employ PCA on 9 features:
+1. Weight (in grams)
+2. screen_size (inches)
+3. PPI
+4. cpu_ghz (in GHz)
+5. RAM (in GB)
+6. Internal memory (in GB)
+7. Camera (in MP)
+8. Battery (in mAh)
+9. Price (in USD)
+
+The other features are ommitted because either they are non-numeric or have less than 5 non-unique values in total. The PCA spit out 9 components, but as expected, the **first two components explain more than 50% varaince**. The loadings of each feature and the variance explained by each principal component can be inferred from the following R output:
+
+```
+> data=read.csv('~/Desktop/Experiments/Smartphone Price/csv/data_clean.csv')
+> names(data)
+ [1] "name"         "LTE"          "year"         "weight"       "display_type"
+ [6] "screen_size"  "ppi"          "cpu_ghz"      "ram"          "internal"    
+[11] "camera"       "front_cam"    "blth_v"       "battery"      "price"       
+> keeps = c('weight','screen_size','ppi','cpu_ghz','ram','internal','camera','battery','price')
+> data = data[keeps]
+> names(data)
+[1] "weight"      "screen_size" "ppi"         "cpu_ghz"     "ram"        
+[6] "internal"    "camera"      "battery"     "price"      
+> pca.out = prcomp(data,scale=TRUE)
+> pca.out
+Standard deviations (1, .., p=9):
+[1] 2.1676360 1.4247753 0.9333816 0.6446664 0.5695935 0.4640132 0.4580829 0.3773277
+[9] 0.3043232
+
+Rotation (n x k) = (9 x 9):
+                   PC1         PC2         PC3         PC4         PC5         PC6
+weight      -0.1702557 -0.61499648  0.11466072 -0.24107137  0.06229698 -0.05427148
+screen_size -0.3208003 -0.44646115 -0.16795676  0.12601336  0.02399054 -0.34171744
+ppi         -0.3341030  0.33014336 -0.25691627 -0.37983090  0.40853834  0.36601715
+cpu_ghz     -0.4106557  0.09871307 -0.13658769  0.16226295  0.44487316 -0.51814113
+ram         -0.3972893  0.18558905 -0.02842717  0.38947693  0.12565417  0.26251748
+internal    -0.3416498  0.08711022  0.55041231  0.48023737 -0.23346237  0.13150173
+camera      -0.3312704  0.26695962 -0.39805456 -0.16988601 -0.72963617 -0.24050782
+battery     -0.3209574 -0.41828210 -0.19463396 -0.05087644 -0.16151820  0.56313403
+price       -0.3170490  0.12431418  0.61146517 -0.58449515 -0.04446480 -0.12912372
+                    PC7         PC8          PC9
+weight      -0.05815725  0.45834294  0.548856112
+screen_size -0.19730973  0.14724298 -0.689719337
+ppi         -0.48343876  0.17709677 -0.056165921
+cpu_ghz      0.08299903 -0.42759152  0.347169198
+ram          0.59216310  0.46589439 -0.052899872
+internal    -0.50416293 -0.05104836  0.116284010
+camera      -0.02232512  0.10895156  0.170592994
+battery      0.16416756 -0.55797963  0.007439038
+price        0.29120086 -0.10567993 -0.232132429
 Below are the plots of price vs each column. Visually we can determine columns which take up most and least amount of variance in the data.
+```
+![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/pca_screeplot.png)
+
+Hence, only the first two components carry most of the variance. In the R output above, the loadings of each feature for each components can be seen, but its not very intuitive. Thanks to R, we can plot the loadings of all the features in a single plot.
+
+![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/pca_biplot.png)
+
+ We can see that none of the features get very close to the components, which was expected. Because if that were true, then a single feature would carry most of the variance. As far as mobile phones/tablets are concerned, that can hardly be the case.
+
+ Its notable though that *internal,ram,cpu_ghz* and *price* get the closest to the first principal component, which means that mobile phones/tablets vary in these features the most as compared to the other 7 features.
+
+ Meanwhile, *weight* is the closest to the second principal component, which means that weight varies quite a bit too, but that's no surprise.
+
+
+ ## Regression and Tree-based approach to predict price:
+
+=============================================================
+
+Below is a plot of price vs each feature in the entire data.
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plot1.png)
 
 ![alt text](https://raw.githubusercontent.com/sarangzambare/smartdevices_pricing/master/png/plot_2.png)
 
-Trial: Regressing price over cpu_ghz. Single variable regression.
+
 
 ### Linear and Quadratic regression over cpu_ghz:
 
