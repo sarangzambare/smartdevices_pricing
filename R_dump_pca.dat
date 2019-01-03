@@ -1,0 +1,48 @@
+> data=read.csv('~/Desktop/Experiments/Smartphone Price/csv/data_clean.csv')
+> names(data)
+ [1] "name"         "LTE"          "year"         "weight"       "display_type"
+ [6] "screen_size"  "ppi"          "cpu_ghz"      "ram"          "internal"
+[11] "camera"       "front_cam"    "blth_v"       "battery"      "price"
+> keeps = c('weight','screen_size','ppi','cpu_ghz','ram','internal','camera','battery','price')
+> data = data[keeps]
+> names(data)
+[1] "weight"      "screen_size" "ppi"         "cpu_ghz"     "ram"
+[6] "internal"    "camera"      "battery"     "price"
+> pca.out = prcomp(data,scale=TRUE)
+> pca.out
+Standard deviations (1, .., p=9):
+[1] 2.1676360 1.4247753 0.9333816 0.6446664 0.5695935 0.4640132 0.4580829 0.3773277
+[9] 0.3043232
+
+Rotation (n x k) = (9 x 9):
+                   PC1         PC2         PC3         PC4         PC5         PC6
+weight      -0.1702557 -0.61499648  0.11466072 -0.24107137  0.06229698 -0.05427148
+screen_size -0.3208003 -0.44646115 -0.16795676  0.12601336  0.02399054 -0.34171744
+ppi         -0.3341030  0.33014336 -0.25691627 -0.37983090  0.40853834  0.36601715
+cpu_ghz     -0.4106557  0.09871307 -0.13658769  0.16226295  0.44487316 -0.51814113
+ram         -0.3972893  0.18558905 -0.02842717  0.38947693  0.12565417  0.26251748
+internal    -0.3416498  0.08711022  0.55041231  0.48023737 -0.23346237  0.13150173
+camera      -0.3312704  0.26695962 -0.39805456 -0.16988601 -0.72963617 -0.24050782
+battery     -0.3209574 -0.41828210 -0.19463396 -0.05087644 -0.16151820  0.56313403
+price       -0.3170490  0.12431418  0.61146517 -0.58449515 -0.04446480 -0.12912372
+                    PC7         PC8          PC9
+weight      -0.05815725  0.45834294  0.548856112
+screen_size -0.19730973  0.14724298 -0.689719337
+ppi         -0.48343876  0.17709677 -0.056165921
+cpu_ghz      0.08299903 -0.42759152  0.347169198
+ram          0.59216310  0.46589439 -0.052899872
+internal    -0.50416293 -0.05104836  0.116284010
+camera      -0.02232512  0.10895156  0.170592994
+battery      0.16416756 -0.55797963  0.007439038
+price        0.29120086 -0.10567993 -0.232132429
+> ?prcomp
+> biplot
+function (x, ...)
+UseMethod("biplot")
+<bytecode: 0x103c93990>
+<environment: namespace:stats>
+> biplot(pca.out)
+> screeplot(pca.out)
+> biplot(pca.out)
+> screeplot(pca.out)
+> biplot(pca.out)
